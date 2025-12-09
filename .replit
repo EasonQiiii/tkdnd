@@ -2,7 +2,30 @@ modules = ["c-clang14", "cpp-clang14"]
 
 [nix]
 channel = "stable-25_05"
-packages = ["cmake", "gnumake", "gcc", "tcl", "tk", "xorg.libX11", "xorg.libXext"]
+packages = ["cmake", "gnumake", "gcc", "tcl", "tk", "xorg.libX11", "xorg.libXext", "pkg-config"]
 
 [agent]
 expertMode = true
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Build TkDND"
+
+[[workflows.workflow]]
+name = "Build TkDND"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd build && make && echo \"Build successful! TkDND library built at cmake/runtime/tkdnd2.9.2/\""
+
+[workflows.workflow.metadata]
+outputType = "console"
