@@ -1,0 +1,8 @@
+modules = ["c-clang14", "cpp-clang14"]
+
+[nix]
+channel = "stable-25_05"
+packages = ["cmake", "gnumake", "gcc", "tcl", "tk", "xorg.libX11", "xorg.libXext"]
+
+[agent]
+expertMode = true
